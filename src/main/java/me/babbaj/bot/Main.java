@@ -66,8 +66,8 @@ public class Main {
     guildB.getAudioManager().setSendingHandler(outputA);
     guildB.getAudioManager().setReceivingHandler(new AudioInputHandler(outputB::receivedAudio));
 
-    guildA.getAudioManager().openAudioConnection(channelB);
-    guildB.getAudioManager().openAudioConnection(channelA);
+    guildA.getAudioManager().openAudioConnection(channelA);
+    guildB.getAudioManager().openAudioConnection(channelB);
 
 
     Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -82,7 +82,7 @@ public class Main {
       return new JDABuilder(type)
           .setToken(token)
           .setAutoReconnect(true)
-          .setStatus(OnlineStatus.ONLINE)
+          .setStatus(OnlineStatus.OFFLINE)
           .build();
     } catch (LoginException ex) {
       throw new LoginException("Failed to log into " + name + ": " + ex.getMessage());
